@@ -213,11 +213,12 @@ button {
   flex: 1;
 }
 
-.logo-emoji {
-  font-size: 64px;
-  display: block;
+.school-logo {
+  height: 80px;
+  width: auto;
+  display: inline-block;
   animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
 }
 
 .logo-text {
@@ -1211,6 +1212,40 @@ button {
   .memory-card-front::after {
     font-size: 1rem;
   }
+
+  /* Game Controls Mobile */
+  .code-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .cyber-btn, .code-btn {
+    font-size: 0.9rem;
+    padding: 8px 4px;
+    width: 100%;
+  }
+
+  .cyber-queue, .code-queue {
+    min-height: 40px;
+  }
+
+  .cyber-block, .code-block {
+    font-size: 0.8rem;
+    padding: 2px 4px;
+  }
+
+  .cyber-run-btn, .code-action-btn {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    flex: 1;
+  }
+
+  .cyber-clear-btn, .code-clear-btn {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
 }
 
 /* ---------- Utility Classes ---------- */
@@ -1236,4 +1271,502 @@ button {
 
 .gap-md {
   gap: var(--space-md);
+}
+
+/* ---------- Maze Game Specific ---------- */
+.maze-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.maze-grid {
+  display: grid;
+  background: var(--bg-card);
+  border: 2px solid rgba(102, 126, 234, 0.5);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  gap: 2px;
+  box-shadow: var(--shadow-glow-purple);
+  margin-bottom: var(--space-md);
+}
+
+.maze-cell {
+  width: clamp(24px, 8vw, 40px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 4vw, 1.8rem);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.maze-wall {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.maze-path {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.maze-player {
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+}
+
+.maze-door {
+  background: rgba(255, 107, 107, 0.2);
+  border: 1px solid var(--accent-coral);
+  color: var(--accent-coral);
+}
+
+.maze-key {
+  animation: float 2s infinite;
+}
+
+.maze-goal {
+  animation: wiggle 2s infinite;
+  background: rgba(81, 207, 102, 0.2);
+  border-radius: 50%;
+}
+
+/* D-PAD Controls */
+.d-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.d-btn {
+  background: var(--bg-glass);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+
+.d-btn:active {
+  background: var(--gradient-primary);
+  transform: scale(0.9);
+}
+
+.d-up { grid-column: 2; grid-row: 1; }
+.d-left { grid-column: 1; grid-row: 2; }
+.d-right { grid-column: 3; grid-row: 2; }
+.d-down { grid-column: 2; grid-row: 3; }
+
+/* Question Modal for Maze */
+.maze-question-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(10, 14, 39, 0.95);
+  border: 2px solid var(--accent-cyan);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.maze-question-modal.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- Coding & AI Game Specific ---------- */
+.coding-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-md);
+}
+
+/* Phase Indicator */
+.phase-indicator {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--accent-cyan);
+  background: var(--bg-glass);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  margin-bottom: var(--space-sm);
+  animation: pulse 2s infinite;
+}
+
+/* Coding Board */
+.coding-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.code-queue {
+  display: flex;
+  gap: var(--space-sm);
+  background: rgba(0, 0, 0, 0.5);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  min-height: 60px;
+  width: 100%;
+  max-width: 400px;
+  overflow-x: auto;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  align-items: center;
+}
+
+.code-block {
+  background: var(--gradient-primary);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  animation: scaleIn 0.2s ease;
+}
+
+.code-controls {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.code-btn {
+  background: var(--bg-glass);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1.5rem;
+  transition: transform 0.1s;
+}
+
+.code-btn:active {
+  transform: scale(0.9);
+  background: var(--gradient-primary);
+}
+
+.code-action-btn {
+  background: var(--gradient-green);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-sm) var(--space-xl);
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(81, 207, 102, 0.5);
+  transition: transform 0.1s;
+}
+.code-action-btn:active { transform: scale(0.95); }
+.code-action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.code-clear-btn {
+  background: var(--gradient-coral);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-sm) var(--space-md);
+  font-weight: bold;
+  color: white;
+}
+.code-clear-btn:active { transform: scale(0.95); }
+
+/* AI Training Board */
+.ai-training-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: rgba(10, 14, 39, 0.8);
+  border: 2px solid var(--accent-purple);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.ai-instruction {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: var(--space-sm);
+  color: var(--accent-gold);
+  z-index: 10;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.ai-progress-bar {
+  width: 80%;
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+  margin-top: var(--space-sm);
+  z-index: 10;
+  overflow: hidden;
+}
+.ai-progress-fill {
+  height: 100%;
+  background: var(--gradient-cyan);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.ai-item {
+  position: absolute;
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s;
+  animation: floatRandom 4s infinite linear alternate;
+}
+.ai-item:active { transform: scale(0.8); }
+
+@keyframes floatRandom {
+  0% { transform: translate(0, 0) rotate(-10deg); }
+  50% { transform: translate(20px, -20px) rotate(10deg); }
+  100% { transform: translate(-20px, 20px) rotate(0deg); }
+}
+
+/* ---------- CyberNode AI Game Specific ---------- */
+
+/* Glow Animation for Card */
+@keyframes cyberGlow {
+  0% { box-shadow: 0 0 5px #00f3ff, inset 0 0 5px #00f3ff; }
+  50% { box-shadow: 0 0 20px #00f3ff, inset 0 0 10px #00f3ff; }
+  100% { box-shadow: 0 0 5px #00f3ff, inset 0 0 5px #00f3ff; }
+}
+
+.cyber-game-card {
+  background: rgba(10, 20, 40, 0.9);
+  border: 1px solid #00f3ff;
+}
+
+.cyber-glow {
+  background: radial-gradient(circle at top right, rgba(0,243,255,0.4) 0%, transparent 60%);
+}
+
+.cyber-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(5, 10, 20, 0.85);
+  border: 1px solid #00f3ff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-board::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(0deg, transparent 95%, rgba(0,243,255,0.3) 100%);
+  background-size: 100% 3px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.cyber-grid {
+  display: grid;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #00f3ff;
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  gap: 2px;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.5), inset 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.cyber-cell {
+  width: clamp(30px, 8vw, 50px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 243, 255, 0.05);
+  border: 1px solid rgba(0, 243, 255, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.cyber-path {
+  background: rgba(0, 243, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.cyber-wall {
+  background: repeating-linear-gradient(45deg, #111, #111 5px, #222 5px, #222 10px);
+  border: 1px solid #ff003c;
+  box-shadow: inset 0 0 5px #ff003c;
+}
+
+.cyber-packet {
+  text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+  animation: pulse 1s infinite;
+}
+
+.cyber-server {
+  text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66;
+  animation: wiggle 2s infinite;
+}
+
+.cyber-queue {
+  display: flex;
+  gap: var(--space-sm);
+  background: rgba(0, 0, 0, 0.8);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  min-height: 50px;
+  width: 100%;
+  max-width: 400px;
+  overflow-x: auto;
+  border: 1px solid #00f3ff;
+  box-shadow: inset 0 0 10px rgba(0,243,255,0.2);
+}
+
+.cyber-block {
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: monospace;
+  font-size: 1rem;
+  box-shadow: 0 0 5px rgba(0,243,255,0.5);
+}
+
+.cyber-btn {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-family: monospace;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px rgba(0,243,255,0.3);
+}
+
+.cyber-btn:active {
+  background: rgba(0, 243, 255, 0.3);
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgba(0,243,255,0.8);
+}
+
+.cyber-run-btn {
+  background: #00f3ff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 0 15px #00f3ff;
+}
+
+.cyber-run-btn:active { background: #00c3cc; }
+.cyber-run-btn:disabled { opacity: 0.5; background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+
+.cyber-clear-btn {
+  background: transparent;
+  color: #ff003c;
+  border: 1px solid #ff003c;
+}
+
+.cyber-clear-btn:active { background: rgba(255,0,60,0.3); box-shadow: 0 0 15px #ff003c; }
+
+/* AI Training Phase */
+.cyber-ai-board {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background: radial-gradient(circle at center, rgba(0,243,255,0.1) 0%, rgba(5,10,20,1) 100%);
+  border: 1px solid #00f3ff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cyber-ai-instruction {
+  position: absolute;
+  top: 10px; left: 0; right: 0;
+  text-align: center;
+  color: #fff;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px #00f3ff;
+  z-index: 10;
+}
+
+.cyber-ai-progress {
+  position: absolute;
+  bottom: 20px; left: 10%; width: 80%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #00f3ff;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.cyber-ai-fill {
+  height: 100%;
+  background: #00f3ff;
+  width: 0%;
+  box-shadow: 0 0 10px #00f3ff;
+  transition: width 0.3s ease;
+}
+
+.cyber-node {
+  position: absolute;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  animation: floatCyber 3s infinite alternate ease-in-out;
+  transition: transform 0.1s;
+}
+
+.cyber-node:active { transform: scale(0.8); }
+
+.cyber-node-pure {
+  background: rgba(0,243,255,0.2);
+  border: 2px solid #00f3ff;
+  box-shadow: 0 0 15px #00f3ff;
+}
+
+.cyber-node-malware {
+  background: rgba(255,0,60,0.2);
+  border: 2px solid #ff003c;
+  box-shadow: 0 0 15px #ff003c;
+}
+
+@keyframes floatCyber {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15px, -15px) scale(1.1); }
+  100% { transform: translate(-15px, 15px) scale(1); }
 }

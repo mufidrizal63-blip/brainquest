@@ -19,6 +19,9 @@ const GameApp = (() => {
     memory:  { name: 'Memory Match',  emoji: '🧠', class: 'MemoryGame' },
     pattern: { name: 'Tebak Pola',   emoji: '🎨', class: 'PatternGame' },
     puzzle:  { name: 'Puzzle Geser',  emoji: '🧩', class: 'PuzzleGame' },
+    maze:    { name: 'Labirin Kosmos', emoji: '🌌', class: 'MazeGame' },
+    coding:  { name: 'Akademi Robot', emoji: '🤖', class: 'CodingGame' },
+    cybernode: { name: 'Node AI Siber', emoji: '🌐', class: 'CyberNodeGame' }
   };
 
   // ---------- Initialization ----------

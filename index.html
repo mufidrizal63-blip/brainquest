@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BrainQuest - Game edukasi interaktif untuk anak SD. Asah otak dengan mini-game seru: Hitung Cepat, Tebak Kata, Memory Match, Tebak Pola, dan Puzzle Geser.">
-  <meta name="keywords" content="game edukasi, anak SD, belajar, matematika, kosakata, puzzle, memory game">
-  <title>BrainQuest 🚀 Game Edukasi Anak SD</title>
+  <meta name="description" content="BrainQuest - Game edukasi interaktif untuk SMK Islam Cendikia. Asah otak dengan mini-game seru: Hitung Cepat, Tebak Kata, Memory Match, Tebak Pola, dan Puzzle Geser.">
+  <meta name="keywords" content="game edukasi, SMK Islam Cendikia, belajar, matematika, kosakata, puzzle, memory game">
+  <title>BrainQuest 🚀 SMK Islam Cendikia</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +26,9 @@
   <div class="screen active" id="menuScreen">
     <header class="menu-header">
       <div class="logo-container bounce-in">
-        <span class="logo-emoji">🚀</span>
+        <img src="LOGO-SMKIC.png" alt="Logo SMK Islam Cendikia" class="school-logo">
         <h1 class="logo-text">BrainQuest</h1>
-        <p class="logo-subtitle">Petualangan Otak Luar Angkasa!</p>
+        <p class="logo-subtitle">SMK Islam Cendikia</p>
       </div>
       <div class="score-badge" id="totalScoreBadge">
         <span class="star-icon">⭐</span>
@@ -102,6 +102,39 @@
         </div>
         <div class="card-badge">Problem Solving</div>
       </button>
+
+      <button class="game-card bounce-in" data-game="maze" id="cardMaze" style="animation-delay: 0.8s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🌌</div>
+        <h2 class="card-title">Labirin Kosmos</h2>
+        <p class="card-desc">Bantu astronot menemukan roketnya!</p>
+        <div class="card-stars" id="mazeStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Petualangan</div>
+      </button>
+
+      <button class="game-card bounce-in" data-game="coding" id="cardCoding" style="animation-delay: 0.9s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🤖</div>
+        <h2 class="card-title">Akademi Robot</h2>
+        <p class="card-desc">Belajar Koding dan latih AI!</p>
+        <div class="card-stars" id="codingStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Koding & AI</div>
+      </button>
+
+      <button class="game-card bounce-in cyber-game-card" data-game="cybernode" id="cardCyberNode" style="animation-delay: 1.0s">
+        <div class="card-glow cyber-glow"></div>
+        <div class="card-emoji" style="filter: drop-shadow(0 0 10px #00f3ff);">🌐</div>
+        <h2 class="card-title" style="color: #00f3ff;">Node AI Siber</h2>
+        <p class="card-desc">Retas jaringan & Latih AI Pertahanan!</p>
+        <div class="card-stars" id="cybernodeStars">
+          <span class="star-empty" style="color: #00f3ff;">☆</span><span class="star-empty" style="color: #00f3ff;">☆</span><span class="star-empty" style="color: #00f3ff;">☆</span>
+        </div>
+        <div class="card-badge" style="background: rgba(0,243,255,0.2); color: #00f3ff; border: 1px solid #00f3ff;">Koding & AI (Pro)</div>
+      </button>
     </div>
 
     <footer class="menu-footer">
@@ -166,5 +199,8 @@
   <script src="js/memory-game.js"></script>
   <script src="js/pattern-game.js"></script>
   <script src="js/puzzle-game.js"></script>
+  <script src="js/maze-game.js"></script>
+  <script src="js/coding-game.js"></script>
+  <script src="js/cybernode-game.js"></script>
 </body>
 </html>
