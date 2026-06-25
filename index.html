@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BrainQuest - Game edukasi interaktif untuk anak SD. Asah otak dengan mini-game seru: Hitung Cepat, Tebak Kata, Memory Match, Tebak Pola, dan Puzzle Geser.">
+  <meta name="keywords" content="game edukasi, anak SD, belajar, matematika, kosakata, puzzle, memory game">
+  <title>BrainQuest 🚀 Game Edukasi Anak SD</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Animated Star Background -->
+  <div class="stars-container" id="starsContainer"></div>
+
+  <!-- Floating Particles Container -->
+  <div class="particles-container" id="particlesContainer"></div>
+
+  <!-- ============ MENU SCREEN ============ -->
+  <div class="screen active" id="menuScreen">
+    <header class="menu-header">
+      <div class="logo-container bounce-in">
+        <span class="logo-emoji">🚀</span>
+        <h1 class="logo-text">BrainQuest</h1>
+        <p class="logo-subtitle">Petualangan Otak Luar Angkasa!</p>
+      </div>
+      <div class="score-badge" id="totalScoreBadge">
+        <span class="star-icon">⭐</span>
+        <span class="score-value" id="totalStars">0</span>
+      </div>
+    </header>
+
+    <!-- Difficulty Selector -->
+    <div class="difficulty-selector bounce-in" style="animation-delay: 0.2s">
+      <span class="difficulty-label">Level:</span>
+      <div class="difficulty-buttons">
+        <button class="diff-btn active" data-diff="easy" id="diffEasy">🟢 Mudah</button>
+        <button class="diff-btn" data-diff="medium" id="diffMedium">🟡 Sedang</button>
+        <button class="diff-btn" data-diff="hard" id="diffHard">🔴 Sulit</button>
+      </div>
+    </div>
+
+    <!-- Game Cards Grid -->
+    <div class="game-grid">
+      <button class="game-card bounce-in" data-game="math" id="cardMath" style="animation-delay: 0.3s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🧮</div>
+        <h2 class="card-title">Hitung Cepat</h2>
+        <p class="card-desc">Jawab soal matematika secepat kilat!</p>
+        <div class="card-stars" id="mathStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Matematika</div>
+      </button>
+
+      <button class="game-card bounce-in" data-game="word" id="cardWord" style="animation-delay: 0.4s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🔤</div>
+        <h2 class="card-title">Tebak Kata</h2>
+        <p class="card-desc">Susun huruf acak menjadi kata yang benar!</p>
+        <div class="card-stars" id="wordStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Bahasa</div>
+      </button>
+
+      <button class="game-card bounce-in" data-game="memory" id="cardMemory" style="animation-delay: 0.5s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🧠</div>
+        <h2 class="card-title">Memory Match</h2>
+        <p class="card-desc">Temukan pasangan kartu yang tersembunyi!</p>
+        <div class="card-stars" id="memoryStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Daya Ingat</div>
+      </button>
+
+      <button class="game-card bounce-in" data-game="pattern" id="cardPattern" style="animation-delay: 0.6s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🎨</div>
+        <h2 class="card-title">Tebak Pola</h2>
+        <p class="card-desc">Temukan pola berikutnya yang tepat!</p>
+        <div class="card-stars" id="patternStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Logika</div>
+      </button>
+
+      <button class="game-card bounce-in" data-game="puzzle" id="cardPuzzle" style="animation-delay: 0.7s">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🧩</div>
+        <h2 class="card-title">Puzzle Geser</h2>
+        <p class="card-desc">Geser dan susun puzzle dengan cepat!</p>
+        <div class="card-stars" id="puzzleStars">
+          <span class="star-empty">☆</span><span class="star-empty">☆</span><span class="star-empty">☆</span>
+        </div>
+        <div class="card-badge">Problem Solving</div>
+      </button>
+    </div>
+
+    <footer class="menu-footer">
+      <p>🌟 Kumpulkan bintang sebanyak-banyaknya! 🌟</p>
+    </footer>
+  </div>
+
+  <!-- ============ GAME SCREEN ============ -->
+  <div class="screen" id="gameScreen">
+    <div class="game-header">
+      <button class="back-btn" id="backBtn">
+        <span>◀</span> Kembali
+      </button>
+      <div class="game-title-bar">
+        <span class="game-title-emoji" id="gameEmoji">🧮</span>
+        <span class="game-title-text" id="gameTitle">Hitung Cepat</span>
+      </div>
+      <div class="game-info">
+        <div class="info-item" id="gameScoreDisplay">
+          <span class="info-label">Skor</span>
+          <span class="info-value" id="gameScore">0</span>
+        </div>
+        <div class="info-item" id="gameTimerDisplay">
+          <span class="info-label">Waktu</span>
+          <span class="info-value" id="gameTimer">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Content Area -->
+    <div class="game-content" id="gameContent">
+      <!-- Games render here -->
+    </div>
+  </div>
+
+  <!-- ============ RESULT SCREEN ============ -->
+  <div class="screen" id="resultScreen">
+    <div class="result-container">
+      <div class="result-emoji" id="resultEmoji">🎉</div>
+      <h2 class="result-title" id="resultTitle">Luar Biasa!</h2>
+      <div class="result-stars" id="resultStars">
+        <span class="result-star" data-index="0">☆</span>
+        <span class="result-star" data-index="1">☆</span>
+        <span class="result-star" data-index="2">☆</span>
+      </div>
+      <div class="result-score">
+        <span class="result-score-label">Skor Kamu</span>
+        <span class="result-score-value" id="resultScore">0/10</span>
+      </div>
+      <div class="result-message" id="resultMessage">Kamu hebat sekali!</div>
+      <div class="result-buttons">
+        <button class="game-btn primary" id="retryBtn">🔄 Main Lagi</button>
+        <button class="game-btn secondary" id="menuBtn">🏠 Menu Utama</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/math-game.js"></script>
+  <script src="js/word-game.js"></script>
+  <script src="js/memory-game.js"></script>
+  <script src="js/pattern-game.js"></script>
+  <script src="js/puzzle-game.js"></script>
+</body>
+</html>
