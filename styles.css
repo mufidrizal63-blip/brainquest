@@ -214,11 +214,16 @@ button {
 }
 
 .school-logo {
-  height: 80px;
-  width: auto;
+  height: 90px;
+  width: 90px;
+  object-fit: cover;
   display: inline-block;
   animation: float 3s ease-in-out infinite;
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--bg-deep);
 }
 
 .logo-text {
@@ -1151,6 +1156,13 @@ button {
   .score-badge {
     position: static;
     margin-top: var(--space-md);
+    background: var(--bg-glass);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--accent-gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: var(--space-sm) var(--space-lg);
   }
 
   .game-header {
@@ -1169,8 +1181,29 @@ button {
   }
 
   .difficulty-selector {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-sm);
+    padding: var(--space-sm);
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .difficulty-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--radius-md);
+    padding: 4px;
+  }
+  
+  .diff-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 0.8rem;
   }
 
   .pattern-item {
@@ -1189,20 +1222,73 @@ button {
 
 @media (max-width: 480px) {
   #menuScreen {
-    padding: var(--space-md) var(--space-sm);
+    padding: 10px 5px;
+  }
+  
+  .school-logo {
+    height: 60px;
+    width: 60px;
+  }
+  
+  .logo-text {
+    font-size: 1.8rem;
+  }
+  
+  .logo-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .score-badge {
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+  
+  .difficulty-selector {
+    margin-bottom: 12px;
+    gap: 4px;
+    padding: 4px;
+  }
+  
+  .diff-btn {
+    padding: 6px 2px;
+    font-size: 0.75rem;
   }
 
   .game-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-width: 100%;
+    padding: 0 4px;
   }
 
   .game-card {
-    padding: var(--space-lg) var(--space-md);
+    padding: 8px 4px;
+    border-radius: 12px;
   }
 
   .card-emoji {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 2px;
+  }
+  
+  .card-title {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+  
+  .card-desc {
+    display: none;
+  }
+  
+  .card-stars {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+  }
+  
+  .card-badge {
+    display: none;
   }
 
   .game-content {
